@@ -1,0 +1,15 @@
+INFONAME,CONTENT,_NullFlags
+科室,神经科门诊,b'\x00'
+科室,神经科一区,b'\x00'
+科室,神经科二区,b'\x00'
+科室,特诊,b'\x00'
+INFONAME,CONTENT,_NullFlags
+科室,神经科门诊,b'\x00'
+科室,神经科门诊（特诊）,b'\x00'
+科室,特诊,b'\x00'
+科室,神经科二区,b'\x00'
+INFONAME,CONTENT,_NullFlags
+科室,神经科门诊,b'\x00'
+科室,神经科门诊（特诊）,b'\x00'
+科室,博济特诊,b'\x00'
+科室,神经科二区,b'\x00'
