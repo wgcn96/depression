@@ -24,23 +24,24 @@ with open( csvFilePath, mode='r') as csvFile:
         print(reader.line_num, row)
 '''
 
-# def readAndfilt(csvFilePath):
-dataFrame = pandas.read_csv(csvFilePath, low_memory=False)
-# print( dataFrame.head())
-# print( dataFrame.tail())
-dropLine = []
-for index in dataFrame.index:
-    curAge = dataFrame.loc[index, 'AGE']
-    if curAge.isdigit() == False:
-        dropLine.append(index)
-    else:
-        curAge = int(curAge)
-        if curAge > 100:
+def readAndfilt(csvFilePath):
+    dataFrame = pandas.read_csv(csvFilePath, low_memory=False)
+    # print( dataFrame.head())
+    # print( dataFrame.tail())
+    dropLine = []
+    for index in dataFrame.index:
+        curAge = dataFrame.loc[index, 'AGE']
+        if curAge.isdigit() == False:
             dropLine.append(index)
-# print(dropLine)
+        else:
+            curAge = int(curAge)
+            if curAge > 100:
+                dropLine.append(index)
+    # print(dropLine)
 
-dataFrame.drop(dropLine,inplace=True)
-dataFrame['AGE'] = dataFrame['AGE'].astype(int)
+    dataFrame.drop(dropLine,inplace=True)
+    dataFrame['AGE'] = dataFrame['AGE'].astype(int)
+    return dataFrame[['NUMBERID', 'TESTNAME', 'SEX', 'TESTDATE', 'AGE', 'ZF']]
 
 
 def selectByAGE(dataFrame, symptom):
@@ -60,6 +61,7 @@ def selectBySex(dataFrame, symptom):
     women = dataFrame[dataFrame.SEX == '女']
     return man, women
 
+
 def selectBySymptom(dataFrame, symptom):
     IDList = []
     dataFrame = dataFrame.set_index('NUMBERID')     # set index use NUMBERID
@@ -75,8 +77,8 @@ def selectBySymptom(dataFrame, symptom):
             IDList.append(ID)
     # print(IDList)
     dataFrame.drop(IDList, inplace=True)
-
     return dataFrame[dataFrame.TESTNAME == symptom ]
+
 
 if __name__ == '__main__':
     data = selectBySymptom(dataFrame, '焦虑自评量表')
